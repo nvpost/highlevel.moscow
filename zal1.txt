@@ -1,0 +1,36 @@
+<div id="zal_app">
+  <div class="zal_table" v-if="device">
+<table width="100%" border="1px">
+  <tr class="zal_tr_header">
+    <td  class="zal_tr_header"><div class="zal_header zal_label">Зал 1</div></td>
+    <td  class="zal_tr_header" v-for="d in day_of_week"><div class="zal_header">{{d}}<div></td>
+   <tr> 
+<tr v-for="(tr, tr_index) in zal1">
+  <td><div class="zal_time">{{tr_index+10}}:00</div></td>
+ <td v-for="td in tr"><div class="zal_item">{{td}}</div></td> 
+ </tr>
+    </table>
+  </div>
+  
+    <div class="zal_table" v-if="!device">
+        <table  class="zal_table_mobile" width="100%" border="1px" v-for="(d, i) in day_of_week">
+        <tr><td colspan=2>
+          <div class="zal_header">
+            {{d}}
+        </div></td>
+        </tr>
+        <tr  v-for="(item, item_index) in zal1"  v-if="item[i].length>1">
+          <td class='mobile_time'>
+            <div >
+              {{item_index+10}}:00 
+            </div>
+          </td>
+          <td>
+           <div class="zal_item">
+           {{item[i]}}
+          </div>
+          </td>
+        <tr>
+        </table> 
+    </div>
+</div>
