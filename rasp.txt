@@ -1,0 +1,213 @@
+<script src="https://cdn.jsdelivr.net/npm/vue"></script>
+
+<div id="zal_app">
+  <div class="zal_table" v-if="device">
+<table width="100%" border="1px">
+  <tr class="zal_tr_header">
+    <td  class="zal_tr_header"><div class="zal_header zal_label">Зал</div></td>
+    <td  class="zal_tr_header" v-for="d in day_of_week"><div class="zal_header">{{d}}<div></td>
+   <tr> 
+   
+<tr v-for="(tr, tr_index) in exercises" v-if="tr.exercise.length">
+  <td><div class="zal_time">{{tr.time}}</div></td>
+  <template v-for="(ex, ex_index) in tr.exercise">
+    <td><div class="zal_item" v-if="ex.length">
+      <div class="zal_item_part" v-for="part in ex">
+        <p v-if="part.link"><a :href="'
+https://highlevel.moscow/'+part.link" target="_blank">{{part.name}}</a></p>
+        <p v-else>{{part.name}}</p>
+      </div>
+      </div></td> 
+  </template>  
+ </tr>
+    </table>
+  </div>
+  
+
+   <div v-else class="day_of_week-block" v-for="(d, index) in day_of_week">
+    <table width="100%">
+      <tr><td colspan="2"><div class="zal_header">{{d}}</div></td></tr>
+
+        <tr class="tr_mobile" v-for="(exs, exs_index) in exercises" v-if="exs.exercise.length&&exs.exercise[index].length">
+           <td class="td_mobile_time">
+             <div class="mobile_time">
+               {{exs.time}}
+             </div>
+              
+          </td>
+          <td align="center">
+            <div class="zal_item_part_mobile" v-for="(ex, ex_index) in exs.exercise[index]">
+              
+              <p v-if="ex.link"><a :href="'https://highlevel.moscow/'+ex.link" target="_blank">{{ex.name}}</a></p>
+<p v-else>{{ex.name}}</p>
+            </div>
+            
+          </td>
+        </tr>  
+
+    </table>
+  </div>    
+  
+  
+</div>
+    
+<script>
+  const zal_app=new Vue({
+  el:"#zal_app",
+  data:{
+    device:document.body.clientWidth>1000,
+        day_of_week:[
+      "Понедельник", "Вторник", "Среда", "Четверг", "Пятница", "Суббота", "Воскресенье"
+    ],
+    exercises:[	
+{time: '9:00', exercise:[
+	[],	
+	[],	
+	[{name: 'Antigravity Сlass', link:'joga-2/antigravity'}],	
+	[],	
+	[{name: 'Antigravity Сlass', link:'joga-2/antigravity'}],	
+	[], 
+	[]]},
+{time: '10:00', exercise:[
+	[{name: 'Йога для беременных', link:'joga-2/joga-dlya-beremennykh-2'}],	
+	[{name: 'Школа шпагата', link:'joga-2/shkola-shpagata'}],	
+	[{name: 'Tai-Bo', link:''}, {name: 'Йога женского здоровья', link:'joga-2/joga-zhenskogo-zdorovya-2'}],	
+	[{name: 'Школа шпагата', link:'joga-2/shkola-shpagata'}],	[{name: 'Tai-Bo', link:''}],	[], []]},
+{time: '11:00', exercise:[
+	[{name: 'Йога женского здоровья', link:'joga-2/joga-zhenskogo-zdorovya-2'}],	
+	[{name: 'Body Ballet', link:'tantsy/bodyballet-2.html'}],	
+	[{name: 'Йога женского здоровья', link:'joga-2/joga-zhenskogo-zdorovya-2'}],	
+	[{name: 'Body Ballet', link:'tantsy/bodyballet-2.html'}],	
+	[{name: 'Йога женского здоровья', link:'joga-2/joga-zhenskogo-zdorovya-2'}],		
+	[{name: 'Antigravity Yoga', link:'joga-2/antigravity'}], 
+	[{name: 'Antigravity Yoga', link:'joga-2/antigravity'}]]},
+{time: '12:00', exercise:[
+	[],
+	[],
+	[],
+	[],
+	[],
+	[{name: 'Tai-Bo', link:''}],
+	[{name: 'Stretching', link:'joga-2/srtretching-2'}],
+]},
+{time: '13:00', exercise:[]},	
+{time: '14:00', exercise:[]},
+{time: '15:00', exercise:[]},
+{time: '16:00', exercise:[]},
+{time: '17:00', exercise:[
+	[],
+	[],
+	[],
+	[],
+	[],
+	[{name: 'Tai-Bo', link:''}],
+	[{name: 'Школа шпагата', link:'joga-2/shkola-shpagata'}],	
+]},
+{time: '18:00', exercise:[
+	[],
+	[{name: 'Body Ballet', link:'tantsy/bodyballet-2.html'}, {name: 'Air Yoga', link:'joga-2/air-yoga'}],
+	[],
+	[{name: 'Antigravity Yoga', link:'joga-2/antigravity'}],
+	[],
+	[],
+	[],
+]},
+{time: '19:00', exercise:[
+	[],
+	[{name: 'Roll Yoga', link:'joga-2/roll-yoga'}],
+	[],
+	[{name: 'Школа шпагата', link:'joga-2/shkola-shpagata'}],
+	[{name: 'Hatha Yoga', link:'joga-khatkha-joga'}],
+	[],
+	[]
+]},
+{time: '19:30', exercise:[
+	[{name: 'Argentine Tango', link:'argentinskoe-tango-2.html'}],
+	[],
+	[{name: 'Argentine Tango', link:'argentinskoe-tango-2.html'}],
+	[],
+	[],
+	[],
+	[],
+]},
+{time: '20:00', exercise:[
+	[],
+	[],
+	[],
+	[],
+	[],
+	[{name: 'Stretching', link:'joga-2/srtretching-2'}],
+	[]
+]},
+{time: '20:30', exercise:[
+	[{name: 'Женские техники Танго', link:''}, {name: 'Caribbean Mix', link:'caribbean-mix.html'}],
+	[],
+	[{name: 'Ballroom Dance', link:'balnye-tantsy-2.html'}],
+	[],
+	[],
+	[],
+	[]
+]
+}
+]
+  }
+})
+</script>    
+    
+<style>
+  #zal_app{
+  font-family: 'MullerRegular';
+  font-weight: 400;
+}
+.zal_item, .zal_header, .zal_time{
+  text-align: center;
+}
+.zal_item{
+/*cursor: pointer;*/ 
+color: #151515
+  }
+/*.zal_item:hover{
+  color: #000;
+  font-weight: 600;
+} 
+  */
+.zal_header, .zal_time{
+  padding: 10px;
+  background-color: #000;
+  color: #fff;
+}
+.zal_label{
+  background-color: #fff;
+  color: #000;
+}
+ .td_mobile_time{
+ width: 20%;
+  }
+.mobile_time{
+width: 20%;  
+  }  
+.zal_table_mobile{
+  margin-bottom: 20px;
+}
+  .zal_item_part{
+  padding: 3px;
+  }
+  .zal_item_part a{
+    border-bottom: 1px solid black;
+    
+  }
+  .zal_item_part:nth-child(2){
+  	border-top: 1px solid black;
+  }
+
+.zal_item_part_mobile:nth-child(2){
+  	border-left: 1px solid black;
+  }
+.tr_mobile{
+  border-bottom: 1px solid black;
+}
+  .zal_item_part_mobile{
+  display: inline-block;
+  padding: 10px;
+}
+</style>  
